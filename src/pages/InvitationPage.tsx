@@ -9,7 +9,7 @@ export function InvitationPage() {
           <h1 className="font-display text-[52px] font-extrabold text-text-primary leading-[1.1] tracking-tight mb-6">
             Семейная Стратегическая<br />Сессия 2026
           </h1>
-          <p className="text-xl text-text-secondary leading-relaxed max-w-2xl">
+           <p className="text-xl text-text-secondary leading-relaxed max-w-2xl">
             Давай вместе спланируем наш год: мечты, цели и важные решения
           </p>
         </div>
