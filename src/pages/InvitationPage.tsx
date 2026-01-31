@@ -129,7 +129,7 @@ export function InvitationPage() {
         {/* CTA */}
         <div className="text-center">
           <Link
-            to="/"
+            to="/workspace"
             className="inline-block bg-teal-500 hover:bg-teal-600 text-white font-semibold py-4 px-14 rounded-md transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
           >
             Поехали! 🚀
