@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: strategy-session
+    name: kotoland-strategy-session
     runtime: static
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
