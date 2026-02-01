@@ -13,7 +13,23 @@ export const saveSessionData = (data: SessionData): void => {
 export const loadSessionData = (): SessionData | null => {
   try {
     const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : null;
+    if (!data) return null;
+
+    const parsedData: SessionData = JSON.parse(data);
+
+    // Migration: add missing blocks if they don't exist
+    const emptyData = createEmptySessionData();
+    const existingBlockIds = parsedData.blocks.map(b => b.id);
+    const missingBlocks = emptyData.blocks.filter(b => !existingBlockIds.includes(b.id));
+
+    if (missingBlocks.length > 0) {
+      parsedData.blocks = [...parsedData.blocks, ...missingBlocks];
+      parsedData.updatedAt = new Date().toISOString();
+      // Save migrated data back to localStorage
+      saveSessionData(parsedData);
+    }
+
+    return parsedData;
   } catch (error) {
     console.error('Error loading session data:', error);
     return null;
