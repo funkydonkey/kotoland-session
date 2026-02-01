@@ -40,7 +40,7 @@ export function WorkspacePage() {
   const handleContinueToResults = () => {
     if (!sessionData) return;
     saveSessionData(sessionData);
-    navigate('/results');
+    navigate('/results', { state: { timestamp: Date.now() } });
   };
 
   if (!sessionData) {

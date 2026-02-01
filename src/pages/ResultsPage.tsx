@@ -30,7 +30,7 @@ export function ResultsPage() {
     };
 
     loadAndGenerate();
-  }, [navigate, location.key]);
+  }, [navigate, location.state]);
 
   if (loading) {
     return (
