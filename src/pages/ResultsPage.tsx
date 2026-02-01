@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import type { GeneratedGoals, SessionData } from '../types';
 import { loadSessionData } from '../utils/storage';
 import { generateGoalsWithAI } from '../utils/openai';
 
 export function ResultsPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [goals, setGoals] = useState<GeneratedGoals | null>(null);
   const [sessionData, setSessionData] = useState<SessionData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadAndGenerate = async () => {
+      // Reset state to show loading
+      setLoading(true);
+      setGoals(null);
+
       const data = loadSessionData();
       if (!data) {
         navigate('/');
@@ -25,7 +30,7 @@ export function ResultsPage() {
     };
 
     loadAndGenerate();
-  }, [navigate]);
+  }, [navigate, location.key]);
 
   if (loading) {
     return (
